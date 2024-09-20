@@ -1,0 +1,32 @@
+.nebula-container {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -10;
+
+  .nebula {
+    --speed: 100s;
+    width: 70%;
+    height: 70%;
+    filter: blur(100px);
+    background: linear-gradient(var(--nebulaColor1), var(--nebulaColor2));
+    animation: rotate var(--speed) linear infinite;
+    border-radius: 50% 20% 70% 10%;
+    z-index: -10;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

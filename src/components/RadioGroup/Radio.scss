@@ -1,0 +1,90 @@
+@import "../../styles/variables";
+
+.capybara-radio-group {
+  &.vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &.horizontal {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+.capybara-radio-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.25rem;
+  margin: 0.25rem;
+
+  &.disabled {
+    opacity: 0.75;
+  }
+
+  input[type="radio"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: var(--form-background);
+    /* Not removed via appearance */
+    margin: 0;
+
+    width: 16px;
+    height: 16px;
+    border: 1px solid $border-color;
+    border-radius: 50%;
+
+    box-sizing: content-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::before {
+      content: "";
+      width: 10px;
+      aspect-ratio: 1;
+      background-color: var(--radioColor);
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.1s ease-in;
+    }
+
+    &:checked {
+      border-color: var(--radioColor);
+
+      &::before {
+        transform: scale(1);
+      }
+    }
+
+    &.square {
+      border-radius: 3px;
+      &::before {
+        border-radius: 0px;
+      }
+    }
+
+    &.hollow-circle {
+      &::before {
+        width: 16px;
+        background-color: transparent;
+        border: 5px solid var(--radioColor);
+      }
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+      &:hover {
+        border-color: var(--radioColor);
+        outline: 2px solid rgba(var(--radioColorRGB), 0.5);
+      }
+    }
+  }
+}

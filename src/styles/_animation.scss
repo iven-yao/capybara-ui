@@ -1,0 +1,35 @@
+@mixin center-spread-underline {
+  position: relative;
+
+  // &:before {
+  //     content: '';
+  //     position: absolute;
+  //     left: 50%;
+  //     top: 0px;
+  //     width: 0px;
+  //     height: 2px;
+  //     background-color: black;
+  //     transition: all 0.3s ease-in-out;
+  // }
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    width: 0px;
+    height: 2px;
+    background-color: black;
+    transition: all 0.3s ease-in-out;
+  }
+
+  // &:hover:before {
+  //     left: 0;
+  //     width: 100%;
+  // }
+
+  &:hover:after {
+    left: 0;
+    width: 100%;
+  }
+}

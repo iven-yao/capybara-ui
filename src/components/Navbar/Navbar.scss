@@ -1,0 +1,54 @@
+@import "../../styles/mixin";
+@import "../../styles/animation";
+
+.capybara-navbar {
+  display: flex;
+  padding: 5px 20px;
+  line-height: 1;
+  position: sticky;
+  top: 0;
+}
+
+.navbar-logo {
+  &:hover {
+    background-color: rgba(lightgray, 0.3);
+  }
+
+  &.circle {
+    border-radius: 50%;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.navbar-items {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  &.justify-start {
+    justify-content: start;
+  }
+
+  &.justify-end {
+    justify-content: end;
+  }
+}
+
+.navbar-item {
+  a.navbar-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+
+    @include center-spread-underline;
+  }
+}

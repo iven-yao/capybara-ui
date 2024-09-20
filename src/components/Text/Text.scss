@@ -1,0 +1,48 @@
+.capybara-image-text {
+    font-size: 10vh;
+    font-weight: 1000;
+    background-size: cover;
+    background-clip: text;
+    background-position: center;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.capybara-3d-text {
+    font-weight: bolder;
+}
+
+.capybara-neon-text {
+
+    font-weight:100;
+    color: white;
+    animation: flicker 3s infinite alternate;
+
+    @keyframes flicker {
+        100% {
+            text-shadow:0 0 .1rem white,
+                        0 0 .2rem white,
+                        0 0 .25rem white,
+                        0 0 1rem var(--neonColor),
+                        0 0 1.25rem var(--neonColor),
+        }
+
+        30% {
+            text-shadow:0 0 .125rem white,
+                        0 0 .25rem white,
+                        0 0 .5rem white,
+                        0 0 .75rem var(--neonColor),
+                        0 0 1rem var(--neonColor),
+                        0 0 1.5rem var(--neonColor);
+        
+        }
+        
+        0% {
+            text-shadow:0 0 .1rem white,
+                        0 0 .2rem white,
+                        0 0 .25rem white,
+                        0 0 1rem var(--neonColor),
+                        0 0 1.25rem var(--neonColor);
+        }
+    }
+}

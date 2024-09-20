@@ -1,0 +1,90 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.capybara-dropdown {
+  position: relative;
+  display: inline-block;
+  color: var(--textColor);
+  box-sizing: border-box;
+
+  .dropdown-btn {
+    &.open {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .list {
+    position: absolute;
+    left: 0;
+    margin-top: 0;
+    box-sizing: border-box;
+    background-color: white;
+    overflow: hidden;
+    min-width: 100%;
+    z-index: 10;
+
+    &.border {
+      border: 1px solid var(--dropdownColor);
+      border-top: none;
+    }
+
+    &.minimal {
+      border-color: transparent;
+      background-color: transparent;
+    }
+
+    &.outline {
+      background-color: transparent;
+    }
+
+    @include rounded;
+  }
+
+  .list-item {
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid $border-color;
+    @include size;
+
+    &.minimal {
+      background-color: transparent;
+      color: var(--dropdownColor);
+    }
+
+    &.fill {
+      background-color: var(--dropdownColor);
+    }
+
+    &.outline {
+      background-color: transparent;
+      color: var(--dropdownColor);
+    }
+
+    &.three-d {
+      background-color: var(--dropdownColor);
+      box-shadow:
+        inset 3px 3px 5px rgba(white, 0.75),
+        inset -2px -2px 3px rgba(black, 0.25);
+    }
+
+    &:hover {
+      background-color: rgba(var(--dropdownColorRGB), 0.75);
+      color: var(--textColor);
+
+      &.minimal,
+      &.outline {
+        background-color: var(--dropdownColor);
+      }
+    }
+  }
+}

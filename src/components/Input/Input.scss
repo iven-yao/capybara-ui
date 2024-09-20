@@ -1,0 +1,107 @@
+@import "../../styles/variables";
+
+.capybara-input-wrapper {
+  height: fit-content;
+  width: 100%;
+  position: relative;
+
+  .icon-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $border-color;
+
+    &.trailing {
+      right: 0;
+    }
+  }
+
+  .floating-label {
+    box-sizing: border-box;
+    position: absolute;
+
+    font-size: inherit;
+    font-family: inherit;
+    line-height: normal;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    color: $border-color;
+    margin: 0;
+    top: -1.25rem;
+    left: 0.5rem;
+  }
+}
+
+.capybara-input {
+  border: 1px solid $border-color;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: inherit;
+  font-family: inherit;
+  background-color: transparent;
+
+  &.underline {
+    border-radius: 0;
+    border: 1px solid transparent;
+    border-bottom: 1px solid $border-color;
+  }
+
+  &.with-icon {
+    padding-left: 2rem;
+  }
+
+  &:disabled {
+    background-color: $disabled;
+  }
+
+  &.with-floating-label {
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:placeholder-shown ~ .floating-label {
+      top: 0;
+      left: 0;
+      margin-top: 0.5rem;
+      margin-left: 0.5rem;
+      &.with-icon {
+        margin-left: 2rem;
+      }
+    }
+
+    &:focus-visible {
+      ~ .floating-label {
+        margin: 0;
+        top: -1.25rem;
+        left: 0.5rem;
+        color: var(--inputColor);
+        &.with-icon {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  &:focus-visible {
+    border-color: var(--inputColor);
+    outline: 2px solid rgba(var(--inputColorRGB), 0.5);
+
+    &.underline {
+      outline: none;
+      border-color: transparent;
+      border-bottom-color: var(--inputColor);
+      box-shadow: 0 2px 0 rgba(var(--inputColorRGB), 0.5);
+    }
+  }
+
+  &[type="color"] {
+    padding: 0 2px;
+    block-size: 37px;
+  }
+}

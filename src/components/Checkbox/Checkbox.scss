@@ -1,0 +1,48 @@
+@import "../../styles/variables";
+@import "../../styles/mixin";
+
+.capybara-checkbox-container {
+  display: flex;
+  gap: 1rem;
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.capybara-checkbox {
+  position: relative;
+  width: 1rem;
+  aspect-ratio: 1;
+  border: 1px solid $border-color;
+  border-radius: 0.25rem;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--checkboxColor);
+    outline: 2px solid rgba(var(--checkboxColorRGB), 0.5);
+  }
+
+  &:after {
+    content: " ";
+    position: absolute;
+    display: block;
+    left: 25%;
+    top: 0;
+    width: 33%;
+    height: 66%;
+    border: solid var(--checkboxColor);
+    border-width: 0 0.2rem 0.2rem 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    scale: 0;
+    transition: scale 0.1s;
+  }
+
+  &.checked {
+    &:after {
+      scale: 1;
+    }
+  }
+}

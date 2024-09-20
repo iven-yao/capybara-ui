@@ -1,0 +1,95 @@
+@import "../../styles/variables";
+
+.capybara-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &.disabled {
+    opacity: 0.8;
+    .capybara-switch-bar {
+      cursor: unset;
+    }
+  }
+
+  .capybara-switch-bar {
+    position: relative;
+    width: var(--switchWidth);
+    height: var(--switchHeight);
+    border: 1px solid $border-color;
+    border-radius: 9999px;
+    box-sizing: content-box;
+    background: linear-gradient(
+      to left,
+      lightgray 0px 34%,
+      var(--switchColor) 65%
+    );
+    background-position: 99%;
+    background-size: 300% 100%;
+    box-shadow: inset 0px 0px 5px rgba(black, 0.2);
+
+    display: flex;
+    align-items: center;
+    transition: background-position 0.5s ease;
+
+    cursor: pointer;
+
+    &.rectangle {
+      border-radius: 4px;
+      .capybara-switch-toggle {
+        border-radius: 3px;
+      }
+    }
+
+    &.pill,
+    &.rectangle {
+      .capybara-switch-toggle {
+        transform: translateX(1px);
+      }
+    }
+
+    &.checked {
+      background-position: -1px;
+
+      .capybara-switch-toggle {
+        transform: translateX(calc(var(--switchWidth) - var(--toggleSize)));
+      }
+
+      &.pill,
+      &.rectangle {
+        .capybara-switch-toggle {
+          transform: translateX(
+            calc(var(--switchWidth) - var(--toggleSize) - 2px)
+          );
+        }
+      }
+    }
+
+    .capybara-switch-toggle {
+      position: absolute;
+      width: var(--toggleSize);
+      height: var(--toggleSize);
+      border: 1px solid $border-color;
+      border-radius: 50%;
+      background-color: white;
+      transform: translateX(-2px);
+      transition: transform 0.5s ease;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  // hide browser defined checkbox
+  input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: var(--form-background);
+    /* Not removed via appearance */
+    margin: 0;
+  }
+}
