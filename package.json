@@ -1,6 +1,6 @@
 {
   "name": "@ivenyao/capybara-ui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "module": "dist/index.esm.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -43,6 +43,7 @@
     "react-dom": "^18.3.1",
     "rollup": "^4.22.2",
     "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-styles": "^4.0.0",
     "sass-loader": "^16.0.1",
     "source-map-loader": "^5.0.0",
     "style-loader": "^4.0.0",
