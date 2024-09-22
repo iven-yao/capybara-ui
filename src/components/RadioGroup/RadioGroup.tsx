@@ -26,7 +26,7 @@ const RadioGroup = (props: PropsWithChildren<RadioGroupProps>) => {
         darkMode = false,
     } = {...props};
     
-    const { primaryColor, darkBorderColor, lightBorderColor } = useThemeContext();
+    const { primaryColor, darkBorderColor, lightBorderColor, darkTextColor, lightTextColor } = useThemeContext();
 
     const [selectedValue, setSelectedValue] = useState(value);
 
@@ -52,6 +52,7 @@ const RadioGroup = (props: PropsWithChildren<RadioGroupProps>) => {
                     "--radioColor":color || primaryColor,
                     "--radioColorRGB": hexToRGB(color || primaryColor).join(','),
                     "--radioBorderColor": darkMode? darkBorderColor: lightBorderColor,
+                    "--radioTextColor": darkMode? darkTextColor: lightTextColor,
                     ...style
                 }}
                 id={id}

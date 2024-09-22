@@ -44,17 +44,7 @@
 .container {
   box-sizing: border-box;
   padding: 2rem;
-  display: flex;
-  gap: 5rem;
-  flex-wrap: wrap;
-  position: relative;
   height: 100%;
   width: 100%;
-}
-
-.mode-switch {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
 }
 

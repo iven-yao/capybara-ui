@@ -1,6 +1,8 @@
 @import "../../styles/variables";
 
 .capybara-radio-group {
+  color: var(--radioTextColor);
+
   &.vertical {
     display: flex;
     flex-direction: column;

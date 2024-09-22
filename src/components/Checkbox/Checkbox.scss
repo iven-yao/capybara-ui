@@ -4,6 +4,7 @@
 .capybara-checkbox-container {
   display: flex;
   align-items: center;
+  color: var(--checkboxTextColor);
 
   // hide browser defined checkbox
   input[type="checkbox"] {

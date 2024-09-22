@@ -20,7 +20,7 @@ const Checkbox = ({
 
     const [isChecked, setIsChecked] = useState(checked);
     const internal_id = crypto.randomUUID();
-    const {primaryColor, lightBorderColor, darkBorderColor} = useThemeContext();
+    const {primaryColor, lightBorderColor, darkBorderColor, lightTextColor, darkTextColor} = useThemeContext();
     
     useEffect(() => {
         if(onChange) {
@@ -36,7 +36,16 @@ const Checkbox = ({
 
 
     return (
-        <div className="capybara-checkbox-container ">
+        <div 
+            className={clsx("capybara-checkbox-container",className)}
+            style={{
+                "--checkboxColor": color || primaryColor,
+                "--checkboxColorRGB": hexToRGB(color || primaryColor).join(','),
+                "--checkboxBorderColor": darkMode? darkBorderColor: lightBorderColor,
+                "--checkboxTextColor": darkMode? darkTextColor: lightTextColor,
+                ...style
+            }}    
+        >
             <input 
                 type="checkbox" 
                 className="sr-only" 
@@ -51,16 +60,10 @@ const Checkbox = ({
                     {
                         "checked":isChecked,
                         "disabled":disabled
-                    },
-                    className
+                    }
                 )}
 
-                style={{
-                    "--checkboxColor": color || primaryColor,
-                    "--checkboxColorRGB": hexToRGB(color || primaryColor).join(','),
-                    "--checkboxBorderColor": darkMode? darkBorderColor: lightBorderColor,
-                    ...style
-                }}
+                
                 onClick={handleClick}
             />
             {label &&

@@ -12,3 +12,4 @@ export * from "./components/Text";
 export * from "./components/Theme";
 export * from "./components/Flex";
 export * from "./components/Background";
+export * from "./components/Container";

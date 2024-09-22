@@ -9,6 +9,8 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  line-height: normal;
+  color: var(--selectTextColor);
 
   &.active {
     border-color: var(--selectColor);

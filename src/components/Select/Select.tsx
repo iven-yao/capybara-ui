@@ -122,6 +122,7 @@ const Select = (props:SelectProps) => {
                     "--textColor": contrastTextColor(color || primaryColor),
                     "--selectBorderColor": darkMode? darkBorderColor: lightBorderColor,
                     "--selectBg": darkMode? darkBackgroundColor: lightBackgroundColor,
+                    "--selectTextColor": darkMode? darkTextColor: lightTextColor,
                     width: typeof width === 'number'? `${width}px`:width,
                     ...style
                 }}
