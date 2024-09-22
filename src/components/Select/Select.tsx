@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { option, SelectProps } from "./SelectProps";
 import { SelectContext } from "./SelectContext";
 import './Select.scss';
@@ -7,7 +7,8 @@ import Icon from "../Icon/Icon";
 import SelectOption from "./SelectOption";
 import SelectMultipleButton from "./SelectMultipleButton";
 import { contrastTextColor, hexToRGB } from "../../utils/colorHelper";
-import ThemeContext from "../Theme/ThemeContext";
+import { useThemeContext } from "../Theme";
+import { Input } from "../Input";
 
 const Select = (props:SelectProps) => {
     const {
@@ -23,9 +24,10 @@ const Select = (props:SelectProps) => {
         clearBtn=true,
         className,
         style,
+        darkMode=false,
     } = {...props}
 
-    const { primaryColor } = useContext(ThemeContext);
+    const { primaryColor, lightBorderColor, darkBorderColor, darkBackgroundColor, lightBackgroundColor, darkTextColor, lightTextColor } = useThemeContext();
 
     const [selectedOption, setSelectedOption] = useState<option|Array<option>|null>();
     const [isOpen, setIsOpen] = useState(false);
@@ -50,6 +52,12 @@ const Select = (props:SelectProps) => {
             window.removeEventListener("mousedown", handleClickOutside);
         }
     }, []);
+
+    useEffect(() => {
+        if(filterString.length > 0) {
+            setIsOpen(true);
+        }
+    },[filterString]);
 
     useEffect(() => {
         const option = options.filter(o => {
@@ -112,6 +120,8 @@ const Select = (props:SelectProps) => {
                     "--selectColor": color || primaryColor,
                     "--selectColorRGB": hexToRGB(color || primaryColor).join(','),
                     "--textColor": contrastTextColor(color || primaryColor),
+                    "--selectBorderColor": darkMode? darkBorderColor: lightBorderColor,
+                    "--selectBg": darkMode? darkBackgroundColor: lightBackgroundColor,
                     width: typeof width === 'number'? `${width}px`:width,
                     ...style
                 }}
@@ -127,16 +137,18 @@ const Select = (props:SelectProps) => {
                 )}>
                     {!selectedOption || (Array.isArray(selectedOption) && selectedOption.length === 0)?
                         searchable && !disabled?
-                            <input 
+                            <Input 
                                 type="text" 
                                 placeholder={placeholder} 
                                 disabled={disabled}
-                                onChange={e => setFilterString(e.target.value)} 
+                                onChange={v => setFilterString(v)} 
+                                darkMode={darkMode}
                                 style={{
                                     border:'none', 
                                     outline:'none', 
                                     backgroundColor:'transparent', 
                                     width:'100%',
+                                    padding:0,
                                 }}
                             />
                             :
@@ -162,7 +174,7 @@ const Select = (props:SelectProps) => {
                 )}
                     hidden={!isOpen}
                 >
-                    {options.filter(o => o.label.indexOf(filterString) != -1).map(o => <SelectOption option={o} key={`${o.label}_${o.value}`}/>)}
+                    {options.filter(o => o.label.toLowerCase().indexOf(filterString.toLowerCase()) != -1).map(o => <SelectOption filterString={filterString} option={o} key={`${o.label}_${o.value}`}/>)}
                 </div>
             </div>
         </SelectContext.Provider>

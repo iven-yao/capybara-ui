@@ -1,0 +1,10 @@
+.capybara-flex {
+    display: flex;
+    flex-direction: var(--flexDirection);
+    flex-wrap: var(--flexWrap);
+    justify-content: var(--flexJustifyContent);
+    justify-items: var(--flexJustifyItems);
+    align-content: var(--flexAlignContent);
+    align-items: var(--flexAlignItems);
+    gap: var(--flexGap);
+}

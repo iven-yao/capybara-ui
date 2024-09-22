@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useContext, useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import { DropdownProps } from "./DropdownProps";
 import { DropdownContext } from "./DropdownContext";
 import clsx from "clsx";
@@ -7,7 +7,7 @@ import Items from "./Items";
 import Item from "./Item";
 import DropdownButton from "./DropdownButton";
 import { contrastTextColor, hexToRGB } from "../../utils/colorHelper";
-import ThemeContext from "../Theme/ThemeContext";
+import { useThemeContext } from "../Theme";
 
 const Dropdown = (props:PropsWithChildren<DropdownProps>) => {
     const {
@@ -18,11 +18,13 @@ const Dropdown = (props:PropsWithChildren<DropdownProps>) => {
         rounded='sm',
         size='md',
         disabled,
-        style
+        style,
+        floatPlacement,
+        darkMode=false
     } = {...props};
 
     const [isOpen, setIsOpen] = useState(false);
-    const {primaryColor} = useContext(ThemeContext);
+    const {primaryColor, lightBorderColor, darkBorderColor, lightBackgroundColor, darkBackgroundColor} = useThemeContext();
 
     return (
         <DropdownContext.Provider value={{
@@ -32,8 +34,9 @@ const Dropdown = (props:PropsWithChildren<DropdownProps>) => {
             variant: variant || 'outline', 
             rounded:rounded || 'sm', 
             size:size || 'md', 
-            disabled}}
-        >
+            disabled,
+            floatPlacement
+        }}>
             <div className={clsx(
                 "capybara-dropdown", 
                 className,
@@ -43,6 +46,8 @@ const Dropdown = (props:PropsWithChildren<DropdownProps>) => {
                     "--dropdownColor": color || primaryColor,
                     "--dropdownColorRGB": hexToRGB(color || primaryColor).join(','),
                     "--textColor": contrastTextColor(color || primaryColor),
+                    "--dropdownBorderColor": darkMode? darkBorderColor: lightBorderColor,
+                    "--dropdownBg": darkMode? darkBackgroundColor: lightBackgroundColor,
                     ...style
                 }}
 

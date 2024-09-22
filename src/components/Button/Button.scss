@@ -58,7 +58,7 @@
       color: var(--textColor);
 
       &.minimal {
-        background-color: $border-color;
+        background-color: rgba(black, 0.1);
         color: var(--btnColor);
       }
 

@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { CheckboxProps } from "./CheckboxProps";
 import './Checkbox.scss';
 import { hexToRGB } from "../../utils/colorHelper";
-import ThemeContext from "../Theme/ThemeContext";
+import { useThemeContext } from "../Theme";
 
 const Checkbox = ({
     className,
@@ -14,12 +14,13 @@ const Checkbox = ({
     checked = false,
     disabled,
     color,
-    label
+    label,
+    darkMode
 }:CheckboxProps) => {
 
     const [isChecked, setIsChecked] = useState(checked);
     const internal_id = crypto.randomUUID();
-    const {primaryColor} = useContext(ThemeContext);
+    const {primaryColor, lightBorderColor, darkBorderColor} = useThemeContext();
     
     useEffect(() => {
         if(onChange) {
@@ -36,7 +37,14 @@ const Checkbox = ({
 
     return (
         <div className="capybara-checkbox-container ">
-            <input type="checkbox" className="sr-only" id={id||internal_id} checked={isChecked} onChange={() => setIsChecked(!isChecked)}/>
+            <input 
+                type="checkbox" 
+                className="sr-only" 
+                id={id||internal_id} 
+                checked={isChecked} 
+                onChange={() => setIsChecked(!isChecked)}
+                disabled={disabled}
+            />
             <div 
                 className={clsx(
                     "capybara-checkbox",
@@ -50,6 +58,7 @@ const Checkbox = ({
                 style={{
                     "--checkboxColor": color || primaryColor,
                     "--checkboxColorRGB": hexToRGB(color || primaryColor).join(','),
+                    "--checkboxBorderColor": darkMode? darkBorderColor: lightBorderColor,
                     ...style
                 }}
                 onClick={handleClick}

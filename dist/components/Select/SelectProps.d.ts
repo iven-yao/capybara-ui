@@ -23,6 +23,7 @@ export type option = {
 export type SelectOptionProps = componentBasics & {
     option: option;
     disabled?: boolean;
+    filterString?: string;
 };
 export type SelectMultipleButtonProps = componentBasics & {
     option: option;

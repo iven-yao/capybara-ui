@@ -13,7 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $border-color;
+    color: var(--inputBorderColor);
 
     &.trailing {
       right: 0;
@@ -29,7 +29,7 @@
     line-height: normal;
     border: 1px solid transparent;
     transition: all 0.2s;
-    color: $border-color;
+    color: var(--inputBorderColor);
     margin: 0;
     top: -1.25rem;
     left: 0.5rem;
@@ -37,7 +37,7 @@
 }
 
 .capybara-input {
-  border: 1px solid $border-color;
+  border: 1px solid var(--inputBorderColor);
   border-radius: 0.25rem;
   box-sizing: border-box;
   width: 100%;
@@ -45,11 +45,16 @@
   font-size: inherit;
   font-family: inherit;
   background-color: transparent;
+  color: var(--inputTextColor);
+
+  &::placeholder {
+    color: var(--inputBorderColor);
+  }
 
   &.underline {
     border-radius: 0;
     border: 1px solid transparent;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid var(--inputBorderColor);
   }
 
   &.with-icon {

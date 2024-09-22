@@ -5,12 +5,14 @@ import ThemeContext from "./ThemeContext";
 const ThemeProvider = (props:PropsWithChildren<ThemeProps>) => {
 
     const {
-        primaryColor = "#F97316",
-        secondaryColor = "#10B981",
-        lightBackgroundColor = "white",
-        lightTextColor = "black",
-        darkBackgroundColor = "#404040",
-        darkTextColor = "white"
+        primaryColor= "#F97316",
+        secondaryColor= "#10B981",
+        lightBackgroundColor= "white",
+        lightTextColor= "black",
+        lightBorderColor= "#757575",
+        darkBackgroundColor= "#404040",
+        darkTextColor= "white",
+        darkBorderColor= "#b0b0b0"
     } = {...props}
 
     return (
@@ -19,8 +21,10 @@ const ThemeProvider = (props:PropsWithChildren<ThemeProps>) => {
             secondaryColor,
             lightBackgroundColor,
             lightTextColor,
+            lightBorderColor,
             darkBackgroundColor,
-            darkTextColor
+            darkTextColor,
+            darkBorderColor
         }}>
             {props.children}
         </ThemeContext.Provider>

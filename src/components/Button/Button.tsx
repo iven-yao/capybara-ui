@@ -1,10 +1,10 @@
-import React ,{ PropsWithChildren, useContext } from "react";
+import React ,{ PropsWithChildren } from "react";
 import { ButtonProps } from "./ButtonProps";
 import clsx from "clsx";
 import './Button.scss';
 import Ripple from "../Ripple/Ripple";
 import { contrastTextColor, hexToRGB } from "../../utils/colorHelper";
-import ThemeContext from "../Theme/ThemeContext";
+import { useThemeContext } from "../Theme";
 
 const Button = ( props: PropsWithChildren<ButtonProps>) => {
     const {
@@ -22,9 +22,10 @@ const Button = ( props: PropsWithChildren<ButtonProps>) => {
         onMouseEnter,
         onMouseLeave,
         disabled=false,
+        darkMode=false,
     } = {...props}
 
-    const {primaryColor} = useContext(ThemeContext);
+    const {primaryColor, lightBorderColor, darkBorderColor} = useThemeContext();
 
     return (
         <button className={clsx(
@@ -42,6 +43,7 @@ const Button = ( props: PropsWithChildren<ButtonProps>) => {
                 "--btnColor": color || primaryColor,
                 "--btnColorRGB": hexToRGB(color || primaryColor).join(','),
                 "--textColor": contrastTextColor(color || primaryColor),
+                "--btnBorderColor": darkMode? darkBorderColor: lightBorderColor,
                 ...style}}
 
             onClick={onClick}

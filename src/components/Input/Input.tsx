@@ -1,10 +1,10 @@
-import React, { useContext, useRef } from "react";
+import React from "react";
 import clsx from "clsx";
 import { InputProps } from "./InputProps";
 import './Input.scss';
 import { hexToRGB } from "../../utils/colorHelper";
-import ThemeContext from "../Theme/ThemeContext";
 import Icon from "../Icon/Icon";
+import { useThemeContext } from "../Theme";
 
 const Input = (props:InputProps) => {
     const {
@@ -32,10 +32,11 @@ const Input = (props:InputProps) => {
         icon,
         variant,
         floatingLabel,
+        darkMode=false
     } = {...props}
 
-    const {primaryColor} = useContext(ThemeContext);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const {primaryColor, lightTextColor, darkTextColor, lightBorderColor, darkBorderColor} = useThemeContext();
+    const internalId = crypto.randomUUID();
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         if(onChange) {
@@ -52,6 +53,8 @@ const Input = (props:InputProps) => {
             style={{
                 "--inputColor": color || primaryColor,
                 "--inputColorRGB": hexToRGB(color || primaryColor).join(','),
+                "--inputTextColor": darkMode? darkTextColor: lightTextColor,
+                "--inputBorderColor": darkMode? darkBorderColor: lightBorderColor,
                 width: typeof width === 'number'? `${width}px`:width,
             }}
         >
@@ -65,8 +68,7 @@ const Input = (props:InputProps) => {
                     },
                     className
                 )}
-                style={style}
-                ref={inputRef}         
+                style={style}    
                 type={type}
                 value={value}
                 onChange={handleChange}
@@ -81,7 +83,7 @@ const Input = (props:InputProps) => {
                 step={step}
                 defaultValue={defaultValue}
                 disabled={disabled}
-                id={id}
+                id={id||internalId}
             />
             {icon &&
                 <div className="icon-wrapper">
@@ -89,7 +91,8 @@ const Input = (props:InputProps) => {
                 </div>
             }
             {floatingLabel &&
-                <div 
+                <label 
+                    htmlFor={id||internalId}
                     className={clsx(
                         "floating-label",
                         {
@@ -97,7 +100,7 @@ const Input = (props:InputProps) => {
                         }
                     )}>
                     {floatingLabel}
-                </div>
+                </label>
             }
         </div>
     );

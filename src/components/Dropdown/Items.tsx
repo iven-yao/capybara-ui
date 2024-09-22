@@ -7,22 +7,31 @@ const Items = ({
     children,
     className,
 }:PropsWithChildren<componentBasics>) => {
-    const {isOpen, variant, rounded} = useContext(DropdownContext);
+    const {isOpen, variant, rounded, floatPlacement} = useContext(DropdownContext);
 
     return (
         isOpen?
         <div className={clsx(
-            "list",
-            {  
-                "border outline":!variant || variant === 'outline',
-                "minimal": variant === 'minimal',
-                "fill": variant === 'fill',
-                "three-d": variant === 'three-d',
-                [`rounded-${rounded}`]: rounded
-            },
-            className,
-            )} role="list" aria-orientation="vertical" aria-labelledby="options-menu">
-            {children}
+            "list-wrapper",
+            {
+                "float-right":floatPlacement === 'right',
+                "float-center":floatPlacement === 'center'
+            }
+        )}>
+            <div className="list-gap"></div>
+            <div className={clsx(
+                "list",
+                {  
+                    "outline":!variant || variant === 'outline',
+                    "minimal": variant === 'minimal',
+                    "fill": variant === 'fill',
+                    "three-d": variant === 'three-d',
+                    [`rounded-${rounded}`]: rounded,
+                },
+                className,
+                )} role="list" aria-orientation="vertical" aria-labelledby="options-menu">
+                {children}
+            </div>
         </div>
         :
         null

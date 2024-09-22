@@ -1,8 +1,8 @@
 import { componentBasics, size, switchShape, switchVariant } from "../../types/propTypes";
 
 export type SwitchProps = componentBasics & {
-    checked: boolean,
-    onChange: (checked:boolean) => void,
+    checked?: boolean,
+    onChange?: (checked:boolean) => void,
     disabled?: boolean,
     label?: string,
     size?: size,

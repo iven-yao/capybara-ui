@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SelectOptionProps } from "./SelectProps";
 import { SelectContext } from "./SelectContext";
 import clsx from "clsx";
@@ -6,7 +6,8 @@ import clsx from "clsx";
 const SelectOption = ({
     option,
     className,
-    style
+    style,
+    filterString
 }:SelectOptionProps) => {
     
     const {selectedOption, setSelectedOption, multiple} = useContext(SelectContext);
@@ -29,6 +30,20 @@ const SelectOption = ({
         }
     }
 
+    const labelStyledWithFilterStr = (filter: string|undefined, label: string) => {
+        if(!filter) return label;
+
+        const index = label.toLowerCase().indexOf(filter.toLowerCase());
+
+        return (
+            <>
+                {label.substring(0, index)}
+                <b>{label.substring(index, index + filter.length)}</b>
+                {label.substring(index+filter.length, label.length)}
+            </>
+        )
+    }
+
     return(
         <div 
         className={clsx(
@@ -38,7 +53,7 @@ const SelectOption = ({
         style={style}
         onClick={handleClick}
         >
-            {option.label}
+            {labelStyledWithFilterStr(filterString, option.label)}
         </div>
     );
 }

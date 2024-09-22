@@ -16,7 +16,7 @@
     position: relative;
     width: var(--switchWidth);
     height: var(--switchHeight);
-    border: 1px solid $border-color;
+    border: 1px solid var(--switchBorderColor);
     border-radius: 9999px;
     box-sizing: content-box;
     background: linear-gradient(
@@ -69,7 +69,7 @@
       position: absolute;
       width: var(--toggleSize);
       height: var(--toggleSize);
-      border: 1px solid $border-color;
+      border: 1px solid var(--switchBorderColor);
       border-radius: 50%;
       background-color: white;
       transform: translateX(-2px);

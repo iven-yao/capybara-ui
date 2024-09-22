@@ -1,9 +1,9 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { SwitchProps } from "./SwitchProps";
 import clsx from "clsx";
 import { hexToRGB } from "../../utils/colorHelper";
 import './Switch.scss';
-import ThemeContext from "../Theme/ThemeContext";
+import { useThemeContext } from "../Theme";
 
 const Switch = (props:SwitchProps) => {
     const {
@@ -19,17 +19,25 @@ const Switch = (props:SwitchProps) => {
         width,
         toggleSize,
         // variant,
-        shape
+        shape,
+        darkMode=false
     } = {...props};
 
-    const { primaryColor } = useContext(ThemeContext);
+    const { primaryColor, lightBorderColor, darkBorderColor } = useThemeContext();
 
     const [internalId] = useState(crypto.randomUUID());
+    const [isChecked, setIsChecked] = useState(checked);
     const checkboxRef = useRef<HTMLInputElement>(null);
 
-    const handleToggle = (e:React.ChangeEvent<HTMLInputElement>) => {
+    useEffect(() => {
         if(onChange) {
-            onChange(e.target.checked);
+            onChange(isChecked||false);
+        }
+    }, [isChecked])
+
+    const handleToggle = (e:React.ChangeEvent<HTMLInputElement>) => {
+        if(!disabled) {
+            setIsChecked(e.target.checked);
         }
     }
 
@@ -52,6 +60,7 @@ const Switch = (props:SwitchProps) => {
             "--switchWidth": switchWidth,
             "--switchHeight": switchHeight,
             "--toggleSize": switchToggleSize,
+            "--switchBorderColor":darkMode? darkBorderColor : lightBorderColor,
             ...style
         }
     }
@@ -77,7 +86,7 @@ const Switch = (props:SwitchProps) => {
             <input 
                 id={internalId}
                 type="checkbox" 
-                checked={checked}
+                checked={isChecked}
                 disabled={disabled}
                 onChange={handleToggle}
                 ref={checkboxRef}
@@ -86,7 +95,7 @@ const Switch = (props:SwitchProps) => {
                 className={clsx(
                     "capybara-switch-bar",
                     {
-                        "checked":checked,
+                        "checked":isChecked,
                         [`${shape}`]: shape !== undefined && shape !== 'default',
                     }
                 )}

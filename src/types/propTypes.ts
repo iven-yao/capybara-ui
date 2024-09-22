@@ -9,9 +9,11 @@ export type shape = 'pill'|'circle';
 export type inputTypes = 'text'|'number'|'email'|'password'|'tel'|'url'|'color';
 export type inputIcons = null | 'search' | 'mail';
 export type inputVariant = null | 'box' | 'underline';
+export type floatPlacement = null | 'left' | 'center' | 'right';
 export type componentBasics = {
     className?: string,
     style?: React.CSSProperties,
     id?: string,
-    testid?: string
+    testid?: string,
+    darkMode?: boolean
 }

@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import { componentBasics, size, rounded, buttonVariant } from "../../types/propTypes";
+import { componentBasics, size, rounded, buttonVariant, floatPlacement } from "../../types/propTypes";
 export type DropdownShared = {
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -8,6 +8,7 @@ export type DropdownShared = {
     size?: size;
     rounded?: rounded;
     disabled?: boolean;
+    floatPlacement?: floatPlacement;
 };
 export type DropdownProps = componentBasics & {
     variant?: buttonVariant;
@@ -15,6 +16,7 @@ export type DropdownProps = componentBasics & {
     size?: size;
     rounded?: rounded;
     disabled?: boolean;
+    floatPlacement?: floatPlacement;
 };
 export type DropdownButtonProps = componentBasics & {};
 export type ItemProps = componentBasics & {

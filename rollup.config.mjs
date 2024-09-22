@@ -3,7 +3,6 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import scss from 'rollup-plugin-scss';
 import terser from '@rollup/plugin-terser';
-import styles from "rollup-plugin-styles";
 
 export default {
   input: 'src/index.ts',
@@ -24,8 +23,10 @@ export default {
     resolve(),
     commonjs(),
     typescript({ tsconfig: './tsconfig.json' }),
-    scss({ fileName: 'capybara-ui.css' }),
-    styles(),
+    scss({ 
+      fileName: 'capybara-ui.css',
+      insert: true
+     }),
     terser(),
   ],
 };
