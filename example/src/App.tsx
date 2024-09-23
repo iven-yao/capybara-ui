@@ -49,11 +49,16 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   return (
     <Container darkMode={darkMode} background="nebula"> 
+      <Flex gap='5rem' alignItems='start' justifyContent='space-between'>
+        <div style={{fontWeight:"900", width:"4.5rem"}}>D E V</div>
+        <Switch checked={darkMode} onChange={(v) => setDarkMode(v)} shape={'pill'}/>
+      </Flex>
+
+      <Flex>
+
+      </Flex>
+
       <Flex gap='5rem' alignItems='start'>
-        <Flex direction='column' gap='1rem'>
-          <div>DEMO</div>
-          <Switch checked={darkMode} onChange={(v) => setDarkMode(v)} shape={'pill'}/>
-        </Flex>
         <Flex direction="column" gap="1rem">
           <Button variant={'minimal'} darkMode={darkMode}>Button</Button>
           <Button variant={'outline'} darkMode={darkMode}>Button</Button>
@@ -91,13 +96,13 @@ function App() {
               {mockData.map(data => <Dropdown.Item key={`dropdown_1_${data.label}`} onClick={()=>{}}>{data.label}</Dropdown.Item>)}
             </Dropdown.Items>
           </Dropdown>
-          <Dropdown variant={'minimal'} floatPlacement={'center'} darkMode={darkMode}>
+          <Dropdown floatPlacement={'center'} darkMode={darkMode}>
             <Dropdown.Button>Dropdown</Dropdown.Button>
             <Dropdown.Items>
               {mockData.map(data => <Dropdown.Item key={`dropdown_1_${data.label}`} onClick={()=>{}}>{data.label}</Dropdown.Item>)}
             </Dropdown.Items>
           </Dropdown>
-          <Dropdown variant={'minimal'} floatPlacement={'right'} darkMode={darkMode}>
+          <Dropdown floatPlacement={'right'} darkMode={darkMode}>
             <Dropdown.Button>Dropdown</Dropdown.Button>
             <Dropdown.Items>
               {mockData.map(data => <Dropdown.Item key={`dropdown_1_${data.label}`} onClick={()=>{}}>{data.label}</Dropdown.Item>)}

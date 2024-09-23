@@ -24,6 +24,7 @@ const NebulaContainer = (props:PropsWithChildren<ContainerProps>) => {
             )}
             
             style={{
+                color: darkMode? darkTextColor: lightTextColor,
                 ...style
             }}
 

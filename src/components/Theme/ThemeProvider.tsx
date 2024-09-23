@@ -5,7 +5,7 @@ import ThemeContext from "./ThemeContext";
 const ThemeProvider = (props:PropsWithChildren<ThemeProps>) => {
 
     const {
-        primaryColor= "#F97316",
+        primaryColor= "#3B82F6",
         secondaryColor= "#10B981",
         lightBackgroundColor= "white",
         lightTextColor= "black",

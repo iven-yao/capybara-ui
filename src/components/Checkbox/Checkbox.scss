@@ -37,12 +37,14 @@
   border-radius: 0.25rem;
   cursor: pointer;
 
-  &:not(.disabled) &:hover {
+  &:hover {
     border-color: var(--checkboxColor);
     outline: 2px solid rgba(var(--checkboxColorRGB), 0.5);
   }
 
   &.disabled {
+    border-color: var(--checkboxBorderColor);
+    outline: none;
     opacity: 0.5;
     cursor: unset;
     ~ label {
