@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css'
-import {Button, Checkbox, Container, Dropdown, Flex, Input, RadioGroup, Select, Switch} from "../../src/index";
+import {Button, Checkbox, Container, Dropdown, Flex, Input, RadioGroup, Select, Switch} from "../src/index";
+import React from 'react';
 
 const mockData = [
   {
