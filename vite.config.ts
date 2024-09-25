@@ -10,5 +10,11 @@ export default defineConfig({
         api: "modern"
       }
     }
+  },
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./tests/testSetup.ts'],
+    // include: ['./tests/**/*.test.tsx'],
+    globals: true
   }
 })
