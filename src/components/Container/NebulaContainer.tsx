@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import React, { PropsWithChildren } from "react";
-import { ContainerProps } from "./ContainerProps";
+import { NebulaContainerProps } from "./ContainerProps";
 import { useThemeContext } from "../Theme";
 import { Nebula } from "../Background";
 
-const NebulaContainer = (props:PropsWithChildren<ContainerProps>) => {
+const NebulaContainer = (props:PropsWithChildren<NebulaContainerProps>) => {
     const {
         className,
         style,
@@ -12,6 +12,8 @@ const NebulaContainer = (props:PropsWithChildren<ContainerProps>) => {
         testid,
         darkMode,
         children,
+        color1,
+        color2,
     } = {...props};
 
     const {darkTextColor, lightTextColor} = useThemeContext();
@@ -31,7 +33,7 @@ const NebulaContainer = (props:PropsWithChildren<ContainerProps>) => {
             id={id}
             data-testid={testid}
         >
-            <Nebula darkMode={darkMode}/>
+            <Nebula darkMode={darkMode} color1={color1} color2={color2}/>
             {children}
         </div>
     );

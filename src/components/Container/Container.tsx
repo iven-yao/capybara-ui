@@ -6,12 +6,6 @@ import NebulaContainer from "./NebulaContainer";
 
 const Container = (props:PropsWithChildren<ContainerProps>) => {
     const {
-        className,
-        style,
-        id,
-        testid,
-        darkMode,
-        children,
         background,
     } = {...props};
 

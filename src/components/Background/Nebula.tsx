@@ -13,7 +13,7 @@ const Nebula = (props:NebulaProps) => {
     const {darkBackgroundColor, lightBackgroundColor} = useThemeContext();
 
     return (
-        <div className="nebula-container"
+        <div className="nebula-wrapper"
             style={{
                 "--nebulaColor1":color1,
                 "--nebulaColor2":color2,

@@ -1,4 +1,4 @@
-.nebula-container {
+.nebula-wrapper {
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -12,12 +12,12 @@
 
   .nebula {
     --speed: 100s;
-    width: 70%;
-    height: 70%;
+    width: 50%;
+    height: 50%;
     filter: blur(100px);
     background: linear-gradient(var(--nebulaColor1), var(--nebulaColor2));
     animation: rotate var(--speed) linear infinite;
-    border-radius: 50% 20% 70% 10%;
+    border-radius: 50%;
     z-index: -10;
     opacity: 0.5;
   }
